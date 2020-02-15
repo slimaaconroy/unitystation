@@ -77,6 +77,7 @@ public class ChatRelay : NetworkBehaviour
 				if (players[i].Script == null)
 				{
 					//joined viewer, don't message them
+					Logger.Log($"1 Remove player {players[i].Name}");
 					players.Remove(players[i]);
 					continue;
 				}
@@ -84,27 +85,35 @@ public class ChatRelay : NetworkBehaviour
 				if (players[i].Script.IsGhost)
 				{
 					//send all to ghosts
+					Logger.Log($"2 Send to Ghost {players[i].Name}");
 					continue;
 				}
 
 				if (chatEvent.position == TransformState.HiddenPos)
 				{
 					//show messages with no provided position to everyone
+					Logger.Log($"3 Chatevent is hidden pos send to: {players[i].Name}");
 					continue;
 				}
 
+				var dist = Vector2.Distance(chatEvent.position,
+						(Vector3)players[i].Script.WorldPos);
+				Logger.Log($"4 Dist from event to player: {dist} {players[i].Name}");
 				if (Vector2.Distance(chatEvent.position,
 						(Vector3)players[i].Script.WorldPos) > 14f)
 				{
+					Logger.Log($"5 Removing player as too far away {players[i].Name}");
 					//Player in the list is too far away for local chat, remove them:
 					players.Remove(players[i]);
 				}
 				else
 				{
+					Logger.Log($"6 {players[i].Name} is within range");
 					//within range, but check if they are in another room or hiding behind a wall
 					if (Physics2D.Linecast(chatEvent.position,
 						(Vector3)players[i].Script.WorldPos, layerMask))
 					{
+						Logger.Log($"7 {players[i].Name} could not be reached by line cast. removing.");
 						//if it hit a wall remove that player
 						players.Remove(players[i]);
 					}
@@ -136,8 +145,10 @@ public class ChatRelay : NetworkBehaviour
 				channels.HasFlag(ChatChannel.System) || channels.HasFlag(ChatChannel.Examine) ||
 				channels.HasFlag(ChatChannel.Action))
 			{
+				Logger.Log($"8 Attempt to send to player: {players[i].Name}");
 				if (!channels.HasFlag(ChatChannel.Binary) || players[i].Script.IsGhost)
 				{
+					Logger.Log($"9 Sent to player {players[i].Name}");
 					UpdateChatMessage.Send(players[i].GameObject, channels, chatEvent.modifiers, chatEvent.message, chatEvent.messageOthers,
 						chatEvent.originator, chatEvent.speaker);
 					continue;
@@ -156,6 +167,7 @@ public class ChatRelay : NetworkBehaviour
 			//if the mask ends up being a big fat 0 then don't do anything
 			if (channels != ChatChannel.None)
 			{
+				Logger.Log($"10 Players channel mask does not equal 0. Send it {players[i].Name}");
 				UpdateChatMessage.Send(players[i].GameObject, channels, chatEvent.modifiers, chatEvent.message, chatEvent.messageOthers,
 					chatEvent.originator, chatEvent.speaker);
 			}
