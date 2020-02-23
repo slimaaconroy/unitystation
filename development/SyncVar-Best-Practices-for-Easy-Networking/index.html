@@ -1,0 +1,1254 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Project Design and Documentation for development">
+      
+      
+        <link rel="canonical" href="https://unitystation.github.io/unitystation/development/SyncVar-Best-Practices-for-Easy-Networking/">
+      
+      
+        <meta name="author" content="MrMepper">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+    
+    
+      
+        <title>SyncVar Best Practices - UnityStation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#syncvar-best-practices" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://unitystation.github.io/unitystation/" title="UnityStation" class="md-header-nav__button md-logo">
+          
+            <img src="../../assets/images/logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              UnityStation
+            </span>
+            <span class="md-header-nav__topic">
+              
+                SyncVar Best Practices
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/unitystation/unitystation/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    unitystation/unitystation
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Introduction
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../contribution-guides/Building-And-Testing/" class="md-tabs__link">
+          Contribution guides
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../Component-Development-Checklist/" class="md-tabs__link md-tabs__link--active">
+          Development
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../project-goals/roadmap/" class="md-tabs__link">
+          Project goals
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://unitystation.github.io/unitystation/" title="UnityStation" class="md-nav__button md-logo">
+      
+        <img src="../../assets/images/logo.png" width="48" height="48">
+      
+    </a>
+    UnityStation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/unitystation/unitystation/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    unitystation/unitystation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../CODE_OF_CONDUCT/" title="Code of Conduct" class="md-nav__link">
+      Code of Conduct
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../CONTRIBUTING/" title="Contribution and Review Guidelines" class="md-nav__link">
+      Contribution and Review Guidelines
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../GPLv3/" title="Licensing" class="md-nav__link">
+      Licensing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../PULL_REQUEST_TEMPLATE/" title="Pull Request Template" class="md-nav__link">
+      Pull Request Template
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../issue_template/" title="Issue Template" class="md-nav__link">
+      Issue Template
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Contribution guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Contribution guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../contribution-guides/Building-And-Testing/" title="Building and Testing" class="md-nav__link">
+      Building and Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../contribution-guides/Developing-for-UnityStation-on-Unix-Systems-with-the-Unity-Editor-and-JetBrains-Rider/" title="Developing On Linux" class="md-nav__link">
+      Developing On Linux
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../contribution-guides/Development-Standards-Guide/" title="Development Standards Guide" class="md-nav__link">
+      Development Standards Guide
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../contribution-guides/Starting-contribution/" title="Starting Contribution" class="md-nav__link">
+      Starting Contribution
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+    
+    <label class="md-nav__link" for="nav-8">
+      Development
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Component-Development-Checklist/" title="Component Development Checklist" class="md-nav__link">
+      Component Development Checklist
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Creating-Items-and-Objects/" title="Creating Items and Objects" class="md-nav__link">
+      Creating Items and Objects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Creating-and-Using-Tile-Palettes/" title="Creating and Using Tile Pallettes" class="md-nav__link">
+      Creating and Using Tile Pallettes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Directory-Structure/" title="Directory Structure" class="md-nav__link">
+      Directory Structure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Electricity-Development/" title="Electricity Development" class="md-nav__link">
+      Electricity Development
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Helpful-Functions-Cheatsheet/" title="Helpful Functions" class="md-nav__link">
+      Helpful Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Hosting-a-Server/" title="Hosting a Server" class="md-nav__link">
+      Hosting a Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../How-to-Map/" title="How to Map" class="md-nav__link">
+      How to Map
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../How-to-use-UIActions/" title="How to use UIActions" class="md-nav__link">
+      How to use UIActions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../How-to-use-the-in-game-debugger/" title="Using the In-game Debugger" class="md-nav__link">
+      Using the In-game Debugger
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Implementing-Interactions/" title="Implementing Interactions" class="md-nav__link">
+      Implementing Interactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Inventory-System/" title="Inventory System" class="md-nav__link">
+      Inventory System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Item-Traits-System/" title="Item Traits System" class="md-nav__link">
+      Item Traits System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Mirror-Upgrade-Customization-Notes/" title="Mirror Upgrade Customization Notes" class="md-nav__link">
+      Mirror Upgrade Customization Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Module-Structure/" title="Module Structure" class="md-nav__link">
+      Module Structure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Navigating-DM-codebases-(like-tgstation)/" title="Navigating DM codebases (like tgstation)" class="md-nav__link">
+      Navigating DM codebases (like tgstation)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../NetUI/" title="NetUI" class="md-nav__link">
+      NetUI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Networking-(Network-Messages)/" title="Networking (Network Messages)" class="md-nav__link">
+      Networking (Network Messages)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Occupations/" title="Occupations" class="md-nav__link">
+      Occupations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Physics-Layers/" title="Physics Layers" class="md-nav__link">
+      Physics Layers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Proper-Spawning-and-Despawning-(Object-Lifecycle)/" title="Proper Spawning and Despawning" class="md-nav__link">
+      Proper Spawning and Despawning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../RPC-vs-Netmsg/" title="RPC vs Netmsg" class="md-nav__link">
+      RPC vs Netmsg
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Right-Click-Menu/" title="Right Click Menu" class="md-nav__link">
+      Right Click Menu
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Simulating-Lag/" title="Simulating Lag" class="md-nav__link">
+      Simulating Lag
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        SyncVar Best Practices
+      </label>
+    
+    <a href="./" title="SyncVar Best Practices" class="md-nav__link md-nav__link--active">
+      SyncVar Best Practices
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#proper-syncvar-usage" class="md-nav__link">
+    Proper SyncVar Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#various-issues-caused-by-improper-syncvar-usage" class="md-nav__link">
+    Various Issues Caused by Improper SyncVar Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#surprising-syncvar-facts" class="md-nav__link">
+    Surprising SyncVar Facts
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Project goals
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Project goals
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/roadmap/" title="RoadMap" class="md-nav__link">
+      RoadMap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-2" type="checkbox" id="nav-9-2">
+    
+    <label class="md-nav__link" for="nav-9-2">
+      Current goal scope
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-2">
+        Current goal scope
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/additional-job-role-developments/" title="Additional Job Role Developments" class="md-nav__link">
+      Additional Job Role Developments
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/antagonist-roles/" title="Antagonist roles" class="md-nav__link">
+      Antagonist roles
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/centcomm-missions/" title="Centcomm missions" class="md-nav__link">
+      Centcomm missions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/character-customization/" title="Character customization" class="md-nav__link">
+      Character customization
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/mapping-changes/" title="Mapping changes" class="md-nav__link">
+      Mapping changes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/mining/" title="Mining" class="md-nav__link">
+      Mining
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/new-lobby-screen/" title="New lobby screen" class="md-nav__link">
+      New lobby screen
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/npc-aliens/" title="Npc aliens" class="md-nav__link">
+      Npc aliens
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/player-accounts/" title="Player accounts" class="md-nav__link">
+      Player accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/shuttles/" title="Shuttles" class="md-nav__link">
+      Shuttles
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/start-of-round/" title="Start of round" class="md-nav__link">
+      Start of round
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/the-narrative/" title="The narrative" class="md-nav__link">
+      The narrative
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#proper-syncvar-usage" class="md-nav__link">
+    Proper SyncVar Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#various-issues-caused-by-improper-syncvar-usage" class="md-nav__link">
+    Various Issues Caused by Improper SyncVar Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#surprising-syncvar-facts" class="md-nav__link">
+    Surprising SyncVar Facts
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/unitystation/unitystation/edit/develop/docs/development/SyncVar-Best-Practices-for-Easy-Networking.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="syncvar-best-practices">SyncVar Best Practices<a class="headerlink" href="#syncvar-best-practices" title="Permanent link">&para;</a></h1>
+<p>The <a href="https://mirror-networking.com/docs/Guides/Sync/SyncVars.html">SyncVar attribute</a> can save a lot of time and code for syncing data from server to all clients (because it avoids having to implement a custom Net Message), but many of us have struggled with understanding its peculiarities (of which it has many) especially as it pertains to how Unitystation is put together. Having used it quite a bit now, I've developed a set of simple "best practices" for how to use them which should hopefully save future developers from struggling with it.</p>
+<h2 id="proper-syncvar-usage">Proper SyncVar Usage<a class="headerlink" href="#proper-syncvar-usage" title="Permanent link">&para;</a></h2>
+<p>These are things you should almost ALWAYS do if using syncvar. If you see places in the code where these rules are violated, be suspicious of bugs. Note that most of these tips only apply if you define a "hook" method.</p>
+<p>1. Add SyncVar to the field you want to sync. The field should ALWAYS be private, and it should NOT be editor assignable. NEVER allow the field to be directly modified by other components or in editor. If you want to configure an initial value for this field, create a separate editor field for it.</p>
+<div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">ItemAttributes</span> <span class="p">:</span> <span class="n">NetworkBehavior</span>
+<span class="p">{</span>
+
+  <span class="c1">//allows configuring the initial value in editor - NOT a syncvar!</span>
+<span class="na">  [SerializeField]</span>
+  <span class="k">private</span> <span class="kt">string</span> <span class="n">initialName</span><span class="p">;</span>    
+
+  <span class="c1">//the actual syncvar</span>
+<span class="na">  [SyncVar(hook=nameof(SyncItemName))]</span>
+  <span class="k">private</span> <span class="kt">string</span> <span class="n">itemName</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li>If the field needs to be viewable externally, create a public readonly accessor:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="k">public</span> <span class="kt">string</span> <span class="n">ItemName</span> <span class="p">=&gt;</span> <span class="n">itemName</span><span class="p">;</span>
+</pre></div>
+
+
+<ul>
+<li>If other components need to know when the syncvar changes, create a UnityEvent they can subscribe to which you invoke in your hook method.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="na">[NonSerialized]</span> <span class="c1">// usually don&#39;t want these to be assignable in editor</span>
+<span class="k">public</span> <span class="n">StringEvent</span> <span class="n">OnItemNameChange</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StringEvent</span><span class="p">();</span>
+
+<span class="c1">// event class - declare this outside of component class</span>
+<span class="k">class</span> <span class="nc">StringEvent</span> <span class="p">:</span> <span class="n">UnityEvent</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>2. (Only if you have a hook method) Define a private hook method named "Sync(name of field)". The first line of the hook should update the field based on the new value. Do NOT make a protected or public hook method. Starting the method name with Sync is important because it makes it easier for others to know that this method is exclusively for changing this syncvar.</p>
+<div class="codehilite"><pre><span></span>  <span class="k">private</span> <span class="k">void</span> <span class="nf">SyncItemName</span><span class="p">(</span><span class="kt">string</span> <span class="n">newName</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">itemName</span> <span class="p">=</span> <span class="n">newName</span><span class="p">;</span>
+    <span class="c1">//any other logic needed goes here</span>
+  <span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li>You generally will need a hook unless the client doesn't need to invoke any special logic when the value changes.</li>
+<li>Note that Mirror actually does set the field automatically on the clientside when the hook is triggered by a server update, but if you called the hook directly on server side (instead of actually changing the field's value) it would not automatically change the value. This has created a lot of needless confusion and mistakes in the past because it is so situational, so sticking to the conventions documented on this page will avoid that confusion.
+3. (Only if you have a hook method) Override OnStartClient (make sure to use the "override" keyword!) and invoke the hook, passing it the current value of the field. If you are extending a component, make sure to call base.OnStartClient(). This ensures the SyncVar hook is called based on the initial value of the field that the server sends.</li>
+</ul>
+<div class="codehilite"><pre><span></span>  <span class="c1">//make sure to use &quot;override&quot; and use correct name &quot;OnStartClient&quot;</span>
+  <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnStartClient</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">SyncItemName</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">itemName</span><span class="p">);</span>
+    <span class="k">base</span><span class="p">.</span><span class="n">OnStartClient</span><span class="p">();</span>
+  <span class="p">}</span>
+</pre></div>
+
+
+<p>5. (Only if you have a hook method) Implement the IServerSpawn interface and set the syncvar field to the initial value in the method. This is a method which is invoked when an object is being spawned, regardless of if it's coming from the pool or not. This ensures that the object is properly re-initialized when it is being spawned from the object pool.</p>
+<div class="codehilite"><pre><span></span>  <span class="k">public</span> <span class="k">void</span> <span class="nf">OnSpawnServer</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="c1">//object starts with editor-configured initial name</span>
+    <span class="n">SyncItemName</span><span class="p">(</span><span class="n">initialName</span><span class="p">);</span>
+
+    <span class="c1">//if extending another component</span>
+    <span class="k">base</span><span class="p">.</span><span class="n">OnSpawnServer</span><span class="p">();</span>
+  <span class="p">}</span>
+</pre></div>
+
+
+<p>6. (Only if you have a hook method) The ONLY place you are allowed to change the value of the syncvar field is via the syncvar hook and only on the server! Never change the value on the client side, and never modify the field directly. If you are on the server and you want to change the field value, call the hook method and pass it the new value. This ensures that the hook logic will always be fired on both client and server side.</p>
+<div class="codehilite"><pre><span></span><span class="na">  [Server]</span>
+  <span class="k">private</span> <span class="k">void</span> <span class="nf">ServerChangeName</span><span class="p">(</span><span class="kt">string</span> <span class="n">newName</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">//NO! BAD! DON&#39;T DO THIS!</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">itemName</span> <span class="p">=</span> <span class="n">newName</span><span class="p">;</span>
+
+    <span class="c1">//YES! GOOD! DO THIS INSTEAD!</span>
+    <span class="n">SyncItemName</span><span class="p">(</span><span class="n">newName</span><span class="p">);</span>
+  <span class="p">}</span>
+</pre></div>
+
+
+<p>7. Do not rely on a consistent ordering when it comes to syncvar changes and net messages sent from the server. Due to network latency, if you change 2 syncvars and send a net message on the server, the updates could arrive on the client in any order.</p>
+<h2 id="various-issues-caused-by-improper-syncvar-usage">Various Issues Caused by Improper SyncVar Usage<a class="headerlink" href="#various-issues-caused-by-improper-syncvar-usage" title="Permanent link">&para;</a></h2>
+<p>Here's some symptoms of improper syncvar usage:  </p>
+<ol>
+<li>Clients who join after the syncvar field has been updated during gameplay (sometimes called "late joining clients") will not display the correct game state. Usually caused by not calling the hook in OnStartClient, sometimes caused by failing to properly override OnStartClient (using override keyword and using the correct method name).</li>
+<li>Server player sees a different game state than the client. Usually caused by setting the syncvar field directly without going through the hook method.</li>
+<li>Client intermittently sees the incorrect game state related to a sync var. Usually caused by having SyncVar logic which has a race condition - the client is relying on the syncvar updates / server messages arriving in a particular order.</li>
+<li>A newly-spawned object behaves differently than other objects of its type. This is due to failing to have a separate editor-assignable initial value for the field or failing to reset the field in OnSpawnServer. Your SyncVar field value was set to something other than the default, then was destroyed and returned to pool, then spawned from the pool with that same field value. This is solved by implementing IServerSpawn and initializing the syncvar value to its proper initial value (either the editor-assignable value or a hardcoded default).</li>
+</ol>
+<h2 id="surprising-syncvar-facts">Surprising SyncVar Facts<a class="headerlink" href="#surprising-syncvar-facts" title="Permanent link">&para;</a></h2>
+<p>Here are some of the things you might not know about how they work which explains the reasoning for the above practices. Not 100% certain on all of these but they might as well be true.  </p>
+<ol>
+<li>SyncVar hooks don't fire on the server when the server changes the field. They only fire on the client when the client receives the new value. Thus the server player will not have the hook called. This is the reason to always change the syncvar by way of the hook method on the server.  </li>
+<li>SyncVar hooks don't fire when client connects and receives the initial value of the field. This is why you should call the syncvar hook manually in OnStartClient.</li>
+<li>SyncVar only works properly on specific types of fields (<a href="https://docs.unity3d.com/Manual/UNetStateSync.html">see the docs</a>), but Unity does not seem to complain very noisily if you use it on an invalid type - the game still builds. If your syncvar doesn't appear to be working, chances are you are using it on an invalid type.</li>
+<li>If you don't update the field's value in the syncvar hook using the new value passed to the hook method, the client-side value won't be updated. This is why you should always update the field in the first line of the hook method.</li>
+<li>It takes a varying amount of time for the server to send the updated SyncVar field to the client, so make sure the code doesn't depend on the syncvar change arriving at a particular time or in a particular order in relation to other network messages or syncvar updates. If you change 2 syncvars on the server and also send a net message, they could arrive on the client in any order.</li>
+</ol>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../Simulating-Lag/" title="Simulating Lag" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Simulating Lag
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../project-goals/roadmap/" title="RoadMap" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                RoadMap
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.808e90bb.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

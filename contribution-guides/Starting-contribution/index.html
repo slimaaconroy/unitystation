@@ -1,0 +1,1364 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Project Design and Documentation for development">
+      
+      
+        <link rel="canonical" href="https://unitystation.github.io/unitystation/contribution-guides/Starting-contribution/">
+      
+      
+        <meta name="author" content="MrMepper">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+    
+    
+      
+        <title>Starting Contribution - UnityStation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#starting-contribution" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://unitystation.github.io/unitystation/" title="UnityStation" class="md-header-nav__button md-logo">
+          
+            <img src="../../assets/images/logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              UnityStation
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Starting Contribution
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/unitystation/unitystation/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    unitystation/unitystation
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Introduction
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../Building-And-Testing/" class="md-tabs__link md-tabs__link--active">
+          Contribution guides
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../development/Component-Development-Checklist/" class="md-tabs__link">
+          Development
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../project-goals/roadmap/" class="md-tabs__link">
+          Project goals
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://unitystation.github.io/unitystation/" title="UnityStation" class="md-nav__button md-logo">
+      
+        <img src="../../assets/images/logo.png" width="48" height="48">
+      
+    </a>
+    UnityStation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/unitystation/unitystation/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    unitystation/unitystation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../CODE_OF_CONDUCT/" title="Code of Conduct" class="md-nav__link">
+      Code of Conduct
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../CONTRIBUTING/" title="Contribution and Review Guidelines" class="md-nav__link">
+      Contribution and Review Guidelines
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../GPLv3/" title="Licensing" class="md-nav__link">
+      Licensing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../PULL_REQUEST_TEMPLATE/" title="Pull Request Template" class="md-nav__link">
+      Pull Request Template
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../issue_template/" title="Issue Template" class="md-nav__link">
+      Issue Template
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      Contribution guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Contribution guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Building-And-Testing/" title="Building and Testing" class="md-nav__link">
+      Building and Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Developing-for-UnityStation-on-Unix-Systems-with-the-Unity-Editor-and-JetBrains-Rider/" title="Developing On Linux" class="md-nav__link">
+      Developing On Linux
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Development-Standards-Guide/" title="Development Standards Guide" class="md-nav__link">
+      Development Standards Guide
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Starting Contribution
+      </label>
+    
+    <a href="./" title="Starting Contribution" class="md-nav__link md-nav__link--active">
+      Starting Contribution
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#first-thing-first" class="md-nav__link">
+    First thing first
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#downloading-unity" class="md-nav__link">
+    Downloading unity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloading-the-repository" class="md-nav__link">
+    Downloading the repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opening-the-repository" class="md-nav__link">
+    Opening the repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forking-the-repository" class="md-nav__link">
+    Forking the repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-the-repository" class="md-nav__link">
+    Updating the repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#now-what" class="md-nav__link">
+    Now what?
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reading-other-unitystation-wikis" class="md-nav__link">
+    Reading other unitystation wikis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-unity" class="md-nav__link">
+    Learning unity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloading-a-code-editor" class="md-nav__link">
+    Downloading a code editor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    Getting help
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Development
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Component-Development-Checklist/" title="Component Development Checklist" class="md-nav__link">
+      Component Development Checklist
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Creating-Items-and-Objects/" title="Creating Items and Objects" class="md-nav__link">
+      Creating Items and Objects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Creating-and-Using-Tile-Palettes/" title="Creating and Using Tile Pallettes" class="md-nav__link">
+      Creating and Using Tile Pallettes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Directory-Structure/" title="Directory Structure" class="md-nav__link">
+      Directory Structure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Electricity-Development/" title="Electricity Development" class="md-nav__link">
+      Electricity Development
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Helpful-Functions-Cheatsheet/" title="Helpful Functions" class="md-nav__link">
+      Helpful Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Hosting-a-Server/" title="Hosting a Server" class="md-nav__link">
+      Hosting a Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/How-to-Map/" title="How to Map" class="md-nav__link">
+      How to Map
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/How-to-use-UIActions/" title="How to use UIActions" class="md-nav__link">
+      How to use UIActions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/How-to-use-the-in-game-debugger/" title="Using the In-game Debugger" class="md-nav__link">
+      Using the In-game Debugger
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Implementing-Interactions/" title="Implementing Interactions" class="md-nav__link">
+      Implementing Interactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Inventory-System/" title="Inventory System" class="md-nav__link">
+      Inventory System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Item-Traits-System/" title="Item Traits System" class="md-nav__link">
+      Item Traits System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Mirror-Upgrade-Customization-Notes/" title="Mirror Upgrade Customization Notes" class="md-nav__link">
+      Mirror Upgrade Customization Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Module-Structure/" title="Module Structure" class="md-nav__link">
+      Module Structure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Navigating-DM-codebases-(like-tgstation)/" title="Navigating DM codebases (like tgstation)" class="md-nav__link">
+      Navigating DM codebases (like tgstation)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/NetUI/" title="NetUI" class="md-nav__link">
+      NetUI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Networking-(Network-Messages)/" title="Networking (Network Messages)" class="md-nav__link">
+      Networking (Network Messages)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Occupations/" title="Occupations" class="md-nav__link">
+      Occupations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Physics-Layers/" title="Physics Layers" class="md-nav__link">
+      Physics Layers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Proper-Spawning-and-Despawning-(Object-Lifecycle)/" title="Proper Spawning and Despawning" class="md-nav__link">
+      Proper Spawning and Despawning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/RPC-vs-Netmsg/" title="RPC vs Netmsg" class="md-nav__link">
+      RPC vs Netmsg
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Right-Click-Menu/" title="Right Click Menu" class="md-nav__link">
+      Right Click Menu
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/Simulating-Lag/" title="Simulating Lag" class="md-nav__link">
+      Simulating Lag
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/SyncVar-Best-Practices-for-Easy-Networking/" title="SyncVar Best Practices" class="md-nav__link">
+      SyncVar Best Practices
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Project goals
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Project goals
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/roadmap/" title="RoadMap" class="md-nav__link">
+      RoadMap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-2" type="checkbox" id="nav-9-2">
+    
+    <label class="md-nav__link" for="nav-9-2">
+      Current goal scope
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-2">
+        Current goal scope
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/additional-job-role-developments/" title="Additional Job Role Developments" class="md-nav__link">
+      Additional Job Role Developments
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/antagonist-roles/" title="Antagonist roles" class="md-nav__link">
+      Antagonist roles
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/centcomm-missions/" title="Centcomm missions" class="md-nav__link">
+      Centcomm missions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/character-customization/" title="Character customization" class="md-nav__link">
+      Character customization
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/mapping-changes/" title="Mapping changes" class="md-nav__link">
+      Mapping changes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/mining/" title="Mining" class="md-nav__link">
+      Mining
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/new-lobby-screen/" title="New lobby screen" class="md-nav__link">
+      New lobby screen
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/npc-aliens/" title="Npc aliens" class="md-nav__link">
+      Npc aliens
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/player-accounts/" title="Player accounts" class="md-nav__link">
+      Player accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/shuttles/" title="Shuttles" class="md-nav__link">
+      Shuttles
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/start-of-round/" title="Start of round" class="md-nav__link">
+      Start of round
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../project-goals/current-goal-scope/the-narrative/" title="The narrative" class="md-nav__link">
+      The narrative
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#first-thing-first" class="md-nav__link">
+    First thing first
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#downloading-unity" class="md-nav__link">
+    Downloading unity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloading-the-repository" class="md-nav__link">
+    Downloading the repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opening-the-repository" class="md-nav__link">
+    Opening the repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forking-the-repository" class="md-nav__link">
+    Forking the repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-the-repository" class="md-nav__link">
+    Updating the repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#now-what" class="md-nav__link">
+    Now what?
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reading-other-unitystation-wikis" class="md-nav__link">
+    Reading other unitystation wikis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-unity" class="md-nav__link">
+    Learning unity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloading-a-code-editor" class="md-nav__link">
+    Downloading a code editor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    Getting help
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/unitystation/unitystation/edit/develop/docs/contribution-guides/Starting-contribution.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="starting-contribution">Starting Contribution<a class="headerlink" href="#starting-contribution" title="Permanent link">&para;</a></h1>
+<p>This is a small guide for people who want to contribute but have no idea how to get started.</p>
+<hr />
+<h2 id="first-thing-first">First thing first<a class="headerlink" href="#first-thing-first" title="Permanent link">&para;</a></h2>
+<h4 id="downloading-unity">Downloading unity<a class="headerlink" href="#downloading-unity" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://unity3d.com/get-unity/download">Unity Hub</a> Manages your Unity installations, making it easier to upgrade the latest version or rollback to the previous</li>
+<li><a href="https://store.unity.com/download?ref=personal">Unity personal edition</a>,
+Just check the little box and download the installer. 
+At some point you'll have to make an account, but can use disposable mail for that.</li>
+</ul>
+<p><strong>Note that you should use Unity 2019.2.19 as of 08.02.2020.</strong></p>
+<h4 id="downloading-the-repository">Downloading the repository<a class="headerlink" href="#downloading-the-repository" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>git clone https://github.com/unitystation/unitystation.git
+</pre></div>
+
+
+<p>Don't know how to use Git?</p>
+<ul>
+<li><a href="https://github.com/unitystation/unitystation/wiki/GIT-basics">Here is a helpful guide on how to Git</a></li>
+<li><a href="https://learngitbranching.js.org">Learn Git Branching</a> is a "game" where you use git commands to progress to the next level</li>
+</ul>
+<p>But if you wouldn't touch Git desktop with a 10 foot stick, and you just want to mess around with the current state of the project, just go ahead and download a <a href="https://codeload.github.com/unitystation/unitystation/zip/develop">.ZIP of the repository</a></p>
+<p><img alt="" src="https://image.prntscr.com/image/YUvWfH_uSwmqJnIQCEnDug.png" /></p>
+<p>For submitting contributions, Git is a must!</p>
+<h3 id="opening-the-repository">Opening the repository<a class="headerlink" href="#opening-the-repository" title="Permanent link">&para;</a></h3>
+<p>So now that you have downloaded unity and the repo, press <em>open</em> and just browse to where you put it, be it through Git or the direct link.</p>
+<p><img alt="" src="https://cdn.discordapp.com/attachments/381634542911488001/388740773601869834/unknown.png" /></p>
+<p>First import will take some time.</p>
+<p>After import is finished, you can open scenes: Select <code>File &gt; Open Scene</code>, navigate to <code>Scenes</code> folder and open a scene (map) of your liking. </p>
+<p><strong>However!</strong> If you just want to play the game (and not do mapping), open the <strong>Lobby</strong> scene. Lobby will load the default map for you automatically after entering the game and its behaviour will match up with the standalone builds.</p>
+<p><img alt="" src="https://image.prntscr.com/image/T7s9wVR7RhyXwwTxf4jEFg.png" /></p>
+<p>At the moment of writing the default map to load is OutpostDeathmatch. <em>30.03.2018</em></p>
+<p>Then you can press <code>Play</code> button on the <code>Game</code> tab to start the game in editor.</p>
+<p><img alt="" src="https://image.prntscr.com/image/G9xxyW59STqh14VslkpAzA.png" /></p>
+<h3 id="forking-the-repository">Forking the repository<a class="headerlink" href="#forking-the-repository" title="Permanent link">&para;</a></h3>
+<p>So you have the repository downloaded, Unity opened, and want to help out. What do you do? Well first you will need to FORK the repository! This basically means that you are making a copy of the repository.</p>
+<p>So first what you are going to want to do is click on the <strong>Fork</strong> button.
+<img alt="" src="https://puu.sh/Fa9e6.png" /></p>
+<p>After some time passes, you will get redirected to your newly created repository! It will be named <em>YourGitHubUsername/unitystation</em> From here you can do exactly what you did with the original repository, but with the addition of being able to submit the changes you make as Pull Requests! </p>
+<h2 id="updating-the-repository">Updating the repository<a class="headerlink" href="#updating-the-repository" title="Permanent link">&para;</a></h2>
+<p>After a while, other people will begin submitting their own changes that will then get pulled into the original repository that everyones fork is based off of. When this happens, your forked repository will no longer be up to date and will need to be updated!</p>
+<p>To begin, you first will need to go back to your forked repository and click on the button that says <code>Compare</code>.
+<img alt="" src="https://puu.sh/Fa9lc.png" /></p>
+<p>Next you will then need to click on the left most dropdown menu and click your forked repository.
+<img alt="" src="https://puu.sh/Fa9n2.png" /></p>
+<p>After doing so, you may notice that the four dropdown menus with repositories have vanished and you are now left with two dropdown menus with branches on your own forked repository. No worry, just click on the hyperlink that says <code>compare across forks</code>
+<img alt="" src="https://puu.sh/Fa9oJ.png" /></p>
+<p>Now just simply click the third dropdown menu and locate the original repository.
+<img alt="" src="https://puu.sh/Fa9rJ.png" /></p>
+<p>Now you will be given the option to do a Pull Request of from <em>unitystation/unitystation</em> to <em>YourGitHubUsername/unitystation</em>. It is basically the reverse that you do when sending changes to the original repository! </p>
+<p>Clicking on the <code>pull request</code> button will bring you to the final step of updating, which is to merge the pull request! Simply click on the <code>Merge</code> button on the bottom of the page and you will have your fork updated to the latest change submitted!</p>
+<p>It is very important, espescially when doing mapping, that you have your fork always updated! Changes happen everyday, so you won't want to do extra work that someone else has already done or even worse; to mess up what has been done!</p>
+<hr />
+<h2 id="now-what">Now what?<a class="headerlink" href="#now-what" title="Permanent link">&para;</a></h2>
+<p>Well, feeling confused after messing around with the scenes and all? well, it's now time to actually learn unity!</p>
+<h5 id="reading-other-unitystation-wikis">Reading other unitystation wikis<a class="headerlink" href="#reading-other-unitystation-wikis" title="Permanent link">&para;</a></h5>
+<p>Take a look at <a href="../..">other wiki pages we have</a></p>
+<h5 id="learning-unity">Learning unity<a class="headerlink" href="#learning-unity" title="Permanent link">&para;</a></h5>
+<p>There is a huge amount of resources around for learning Unity, and for the more experienced in the code area, it'll be a piece of cake!</p>
+<p><a href="https://unity3d.com/learn/tutorials"><em>Official Unity tutorials</em></a> All people new to unity start here, it'll teach you basics like the UI, the script and scene editors, and all sorts of things.</p>
+<p><a href="https://docs.unity3d.com/Manual/index.html"><em>Official Unity manual</em></a> The manual is very useful, even for the more experienced, always keep it close.</p>
+<h5 id="downloading-a-code-editor">Downloading a code editor<a class="headerlink" href="#downloading-a-code-editor" title="Permanent link">&para;</a></h5>
+<p>There is a lot you can accomplish through editors available from Unity, but if you plan on contributing seriously to the code/scripts, you'll do better if you have a development environment set-up.</p>
+<p>Editors that you might like include:</p>
+<ul>
+<li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+<li><a href="https://www.jetbrains.com/rider/">JetBrains Rider</a></li>
+<li><a href="https://visualstudio.microsoft.com/vs/whatsnew/">Visual Studio</a> 2015 or newer</li>
+<li><a href="https://ide.atom.io/">Atom</a></li>
+<li><a href="https://www.vim.org/">Vim</a></li>
+</ul>
+<p>Regardless of which editor you choose, you'll want to install any relevant extensions from your editor's Marketplace for unity C# projects, including the "C# powered by OmniSharp" plugin if your IDE has one.</p>
+<p>Don't forget to enable Roslyn Analyzers (static code analysis) if they are supported, and enable "Format on Save" in your Settings so your editor will automatically fix indentations and whitespace issues for you.</p>
+<p>When opening the unitystation project using your code editor, open the "UnityProject" subfolder as your editor's workspace, instead of the root "unitystation" folder that contains the entire repo.</p>
+<h5 id="getting-help">Getting help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h5>
+<p>There is no shame in asking questions.</p>
+<p><a href="https://discord.gg/TMRMfpS"><em>Unitystation discord</em></a> Anyone would be glad to answer your questions, just ask!</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../Development-Standards-Guide/" title="Development Standards Guide" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Development Standards Guide
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../development/Component-Development-Checklist/" title="Component Development Checklist" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Component Development Checklist
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.808e90bb.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
